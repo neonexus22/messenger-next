@@ -59,7 +59,7 @@ const AuthForm = () => {
           if (callback?.error) {
             toast.error("Invalid credentials!");
           } else if (callback?.ok) {
-            toast.success("logged in");
+            toast.success("Logged in!");
           }
         })
         .finally(() => setIsLoading(false));
@@ -68,6 +68,15 @@ const AuthForm = () => {
 
   const socialAction = (action: string) => {
     setIsLoading(true);
+    signIn(action, { redirect: false })
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error("Invalid credentials!");
+        } else if (callback?.ok) {
+          toast.success("Logged in!");
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
